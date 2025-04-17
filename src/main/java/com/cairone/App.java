@@ -9,9 +9,11 @@ import java.util.LinkedList;
 public class App {
 
 	public static void main(String[] args) {
-		SpringApplication.run(App.class, args);
-		LinkedList<Integer> dll = new LinkedList<>();
-		dll.add(1);
+		//SpringApplication.run(App.class, args);
+		//LinkedList<Integer> dll = new LinkedList<>();
+		//dll.add(1);
+		int num = 123456789 & 12;
+		System.out.println(num);
 	}
 
 }
