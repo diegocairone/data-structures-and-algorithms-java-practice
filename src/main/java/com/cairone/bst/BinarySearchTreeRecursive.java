@@ -1,4 +1,4 @@
-package com.cairone;
+package com.cairone.bst;
 
 import java.util.StringJoiner;
 
