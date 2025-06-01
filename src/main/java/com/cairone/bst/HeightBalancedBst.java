@@ -94,12 +94,45 @@ public class HeightBalancedBst {
         return Math.max(countRight, countLeft);
     }
 
+    // BST: Convert Sorted Array to Balanced BST ( ** Interview Question)
     public void sortedArrayToBST(int[] nums) {
         this.root = sortedArrayToBST(nums, 0, nums.length - 1);
     }
 
     private BstNode sortedArrayToBST(int[] nums, int left, int right) {
-        // TODO
-        return null;
+        if (left > right) {
+            return null;
+        }
+
+        int mid = left + (right - left) / 2;
+
+        BstNode root = new BstNode(nums[mid]);
+        root.setLeftNode(sortedArrayToBST(nums, left, mid - 1));
+
+        root.setRightNode(sortedArrayToBST(nums, mid + 1, right));
+        return root;
+    }
+
+    // BST: Invert Binary Tree ( ** Interview Question)
+    public void invert() {
+        root = invertTree(root);
+    }
+
+    private BstNode invertTree(BstNode node) {
+        // The base case for the recursion is when the node is null. [cite: 39]
+        // If the tree is empty, it returns null. [cite: 7]
+        if (node == null) {
+            return null;
+        }
+
+        // A temporary node is used to facilitate the swap of the left and right children. [cite: 41]
+        BstNode temp = node.getLeftNode();
+        // The swap happens by assigning the inverted right subtree to the left child.
+        node.setLeftNode(invertTree(node.getRightNode()));
+        // And assigning the original left child (stored in temp) to the right child after it has been inverted.
+        node.setRightNode(invertTree(temp));
+
+        // The method returns the node after its subtree has been inverted. [cite: 37]
+        return node;
     }
 }
