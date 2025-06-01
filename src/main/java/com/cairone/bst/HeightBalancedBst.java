@@ -1,5 +1,8 @@
 package com.cairone.bst;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HeightBalancedBst {
 
     private BstNode root;
@@ -134,5 +137,18 @@ public class HeightBalancedBst {
 
         // The method returns the node after its subtree has been inverted. [cite: 37]
         return node;
+    }
+
+    public List<Integer> convertToAnInOrderList() {
+        List<Integer> result = new ArrayList<>();
+        inorderHelper(this.root, result);
+        return result;
+    }
+
+    private void inorderHelper(BstNode node, List<Integer> result) {
+        if (node == null) return;
+        inorderHelper(node.getLeftNode(), result);
+        result.add(node.getValue());
+        inorderHelper(node.getRightNode(), result);
     }
 }
