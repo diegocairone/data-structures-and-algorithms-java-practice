@@ -89,8 +89,13 @@ public class BinarySearchTree {
     //   +===================================================+
 
     public boolean isValidBST() {
-        //TODO implement this
-        return false;
+        ArrayList<Integer> inOrderValues = DFSInOrder();
+        for (int i = 1; i < inOrderValues.size(); i++) {
+            if (inOrderValues.get(i) <= inOrderValues.get(i - 1)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
