@@ -15,6 +15,7 @@ public class EmailSubjectSpamDetector {
     private String detectSpam(String subject, List<String> keywords) {
 
         String[] words = subject.split(" ");    // O(n) where n is subject length
+
         Map<String, Integer> spamWordCount = new HashMap<>();
 
         // words.length <<<<<< keywords.size()
