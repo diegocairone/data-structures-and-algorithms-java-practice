@@ -1,6 +1,7 @@
 package com.cairone.tallertechnologies;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LookAndSayChallange {
@@ -11,33 +12,38 @@ public class LookAndSayChallange {
 
         String current = "1";
 
-        // O(n) = O(n * (m + k)) where m is the length of the string and k is the number of unique digits in the string
         for (int i = 2; i <= n; i++) {
-            current = previousElement(current);
+            current = nextElement(current);
         }
 
         return current;
     }
 
-    public String previousElement(String element) {
+    public String nextElement(String current) {
 
-        char[] chars = element.toCharArray();
-        Map<Integer, Integer> map = new HashMap<>();
-
-        // O(m) where m is the length of the string
-        for (int i = 0; i < chars.length; i++) {
-            int num = chars[i] - '0';
-            map.put(num, map.getOrDefault(num, 0) + 1);
-        }
+        char[] chars = current.toCharArray();
+        int count = 0;
+        int p = chars[0] - '0';
 
         StringBuilder sb = new StringBuilder();
 
-        // O(k) where k is the number of unique digits in the string
-        map.forEach((num, count) -> {
-            sb.append(count);
-            sb.append(num);
-        });
+        for (int i = 0; i < chars.length; i++) {
+            int currNum = chars[i] - '0';
+            if (currNum == p) {
+                count++;
+            } else {
+                sb.append(count);
+                sb.append(p);
+
+                p = currNum;
+                count = 1;
+            }
+        }
+
+        sb.append(count);
+        sb.append(p);
 
         return sb.toString();
     }
+
 }
